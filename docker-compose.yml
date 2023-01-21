@@ -30,7 +30,7 @@ services:
       - traefik.http.routers.PROJECT_NAME.tls.certresolver=lets-encrypt
       - traefik.port=PROJECT_PORT
     volumes:
-      - ./bot:/home/node/app
+      - ./PROJECT_NAME:/home/node/app
       - node_modules:/home/node/app/node_modules
     networks:
       - app-network
