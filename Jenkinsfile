@@ -13,7 +13,7 @@ pipeline {
         }
         stage("Cloning git") {
             steps {
-                dir('$JOB_NAME') {
+                dir("${JOB_NAME}") {
                     git branch: "main", url: '$PROJECT_GIT'
                 }
                 git branch: "main", url: 'https://github.com/Davi-Coelho/node-docker-conf.git'
