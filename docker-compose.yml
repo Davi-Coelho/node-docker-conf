@@ -20,8 +20,6 @@ services:
     image: docker_user/project_name
     build:
       context: PROJECT_NAME
-      args:
-        PORT: PROJECT_PORT
     env_file:
       - .env
     labels:
@@ -45,5 +43,5 @@ networks:
   traefik_web:
     external: true
   app-network:
-    driver: bridge
+    name: PROJECT_NAME-network
     external: false
