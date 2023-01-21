@@ -19,7 +19,7 @@ pipeline {
                 git branch: "main", url: 'https://github.com/Davi-Coelho/node-docker-conf.git'
                 sh 'mv Dockerfile $JOB_NAME/Dockerfile'
                 sh "sed -i 's/docker_user/${DOCKER_USER}/' docker-compose.yml"
-                sh "sed -i 's/PROJECT_NAME\\|project_name/${JOB_NAME}/' docker-compose.yml"
+                sh "sed -i 's/PROJECT_NAME\\|project_name/${JOB_NAME}/g' docker-compose.yml"
                 sh "sed -i 's/PROJECT_PORT/${PROJECT_PORT}/' docker-compose.yml"
                 sh "sed -i 's/DB_USER/${DB_USER}/' docker-compose.yml"
                 sh "sed -i 's/DB_PASS/${DB_PASS}/' docker-compose.yml"
@@ -29,7 +29,7 @@ pipeline {
 
         stage("Copying .env file") {
             steps {
-                withCredentials([file(credentialsId: '$JOB_NAME-env-file', variable: "envFile")]) {
+                withCredentials([file(credentialsId: "${JOB_NAME}-env-file", variable: "envFile")]) {
                     sh 'cp $envFile $WORKSPACE'
                 }
             }
