@@ -19,7 +19,7 @@ pipeline {
                 git branch: "main", url: 'https://github.com/Davi-Coelho/node-docker-conf.git'
                 sh "sed -i 's/=DB_USER/=${DB_USER}/' Dockerfile"
                 sh "sed -i 's/=DB_PASS/=${DB_PASS}/' Dockerfile"
-                sh "sed -i 's/=DB/=${PROJECT_NAME}/' Dockerfile"
+                sh "sed -i 's/=DB/=${JOB_NAME}/' Dockerfile"
                 sh "sed -i 's/=PORT/=${PORT}/' Dockerfile"
                 sh 'mv Dockerfile $JOB_NAME/Dockerfile'
                 sh "sed -i 's/docker_user/${DOCKER_USER}/' docker-compose.yml"
