@@ -29,7 +29,7 @@ pipeline {
 
         stage("Copying .env file") {
             steps {
-                withCredentials([file(credentialsId: "bot-env-file", variable: "envFile")]) {
+                withCredentials([file(credentialsId: "project-env-file", variable: "envFile")]) {
                     sh 'cp $envFile $WORKSPACE'
                 }
             }
