@@ -33,8 +33,15 @@ pipeline {
 
         stage("Copying .env file") {
             steps {
-                withCredentials([file(credentialsId: "${JOB_NAME}-env-file", variable: "envFile")]) {
-                    sh 'cp $envFile $WORKSPACE'
+                script {
+                    try {
+                        withCredentials([file(credentialsId: "${JOB_NAME}-env-file", variable: "envFile")]) {
+                            sh 'cp $envFile $WORKSPACE'
+                        }
+                    }
+                    catch(Exception e) {
+                        print("Error: " + e)
+                    }
                 }
             }
         }
