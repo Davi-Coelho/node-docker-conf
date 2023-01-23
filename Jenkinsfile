@@ -21,6 +21,11 @@ pipeline {
                 sh "sed -i 's/=DB_PASS/=${DB_PASS}/' Dockerfile"
                 sh "sed -i 's/=DB/=${JOB_NAME}/' Dockerfile"
                 sh "sed -i 's/=PORT/=${PROJECT_PORT}/' Dockerfile"
+                script {
+                    if (env.JOB_NAME != "screenshot") {
+                        sh "sed -i '9,10d' Dockerfile"
+                    }
+                }
                 sh 'mv Dockerfile $JOB_NAME/Dockerfile'
                 sh "sed -i 's/docker_user/${DOCKER_USER}/' docker-compose.yml"
                 sh "sed -i 's/PROJECT_NAME\\|project_name/${JOB_NAME}/g' docker-compose.yml"
@@ -28,12 +33,6 @@ pipeline {
                 sh "sed -i 's/DB_USER/${DB_USER}/' docker-compose.yml"
                 sh "sed -i 's/DB_PASS/${DB_PASS}/' docker-compose.yml"
                 sh "sed -i 's/DOMAIN/${DOMAIN}/' docker-compose.yml"
-
-                script {
-                    if (env.JOB_NAME != "webshots") {
-                        sh "sed -i '9,10d' Dockerfile"
-                    }
-                }
             }
         }
 
