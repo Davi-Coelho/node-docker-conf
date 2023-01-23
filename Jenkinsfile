@@ -24,6 +24,7 @@ pipeline {
                 script {
                     if (env.JOB_NAME != "screenshot") {
                         sh "sed -i '9,10d' Dockerfile"
+                        sh "sed -i '19,20d' docker-compose.yml"
                     }
                 }
                 sh 'mv Dockerfile $JOB_NAME/Dockerfile'

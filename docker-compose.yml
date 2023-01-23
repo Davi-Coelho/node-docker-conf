@@ -16,6 +16,8 @@ services:
     depends_on:
       - mongo
     container_name: PROJECT_NAME
+    security_opt:
+      - seccomp=./chrome.json
     restart: unless-stopped
     image: docker_user/project_name
     build:
