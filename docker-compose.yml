@@ -33,7 +33,7 @@ services:
     networks:
       - app-network
       - web
-    command: /home/node/app/node_modules/.bin/nodemon.js app.js
+    command: /home/node/app/node_modules/.bin/nodemon app.js
 
 volumes:
   db:
