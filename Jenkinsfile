@@ -41,6 +41,7 @@ pipeline {
                     }
                     catch(Exception e) {
                         print("Error: " + e)
+                        sh 'touch .env'
                     }
                 }
             }
