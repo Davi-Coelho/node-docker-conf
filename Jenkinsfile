@@ -28,6 +28,12 @@ pipeline {
                 sh "sed -i 's/DB_USER/${DB_USER}/' docker-compose.yml"
                 sh "sed -i 's/DB_PASS/${DB_PASS}/' docker-compose.yml"
                 sh "sed -i 's/DOMAIN/${DOMAIN}/' docker-compose.yml"
+
+                script {
+                    if (env.JOB_NAME != "webshots") {
+                        sh "sed -i '9,10d' Dockerfile"
+                    }
+                }
             }
         }
 
